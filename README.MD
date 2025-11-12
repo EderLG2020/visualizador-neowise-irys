@@ -9,13 +9,15 @@ pip install -r requirements.txt
 
 ## VERSION 
 
-PYTHON: 3.14.0    
-
+PYTHON: 3.10.6     
+pip 22.2.2 
 
 ## PASOS:
 
-- detectar folder de eventos
+- detectar folder de eventos(cuando all cambios o se crea nueva carpeta)
 - ejecutar script para que la ui pueda visualizar
+- tiene una serie de pasos para que pueda importarlo al iRYS
+- finaliza el programa
 
 
 ## INSTALAR PAQUETES:
@@ -27,13 +29,15 @@ pip install -r requirements.txt
 python visorirys.py
 ```
 
-## Se otiene error
+## Se obtiene error
 - codigo 01.021.0034
- se puee encontrar mayor informacion en: file:///C:/Program%20Files/CFLLog/guide/Software_Errors_Guide_16_6.html#ArchiveError
+ se puee encontrar mayor informacion en: ```file:///C:/Program%20Files/CFLLog/guide/Software_Errors_Guide_16_6.html#ArchiveError```
 
 indica 
+
 |ERROR | CODE |	MESSAGE | REASON | SOLUTION | SEE
-01.021.0034 | The brand configuration file is not valid or not present. Please, re-install the software	| Is not possible to verify the software's brand	| Reinstall the software	
+| ------ | ------ | ------ | ------ | ------ | ------ |
+|01.021.0034 | The brand configuration file is not valid or not present. |Please, re-install the software	| Is not possible to verify the |software's brand	| Reinstall the software	
 
 
 ### Problema a resolver:
@@ -92,3 +96,9 @@ Ruta de la carpeta irys donde se cargo
 ```bash
 D:\irys"
 ```
+
+### Instalar pip
+
+Descargar archivo 
+linux: python get-pip.py
+windows: py get-pip.py
