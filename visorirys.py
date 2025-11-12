@@ -3,6 +3,7 @@ import time
 import subprocess
 import ctypes
 import logging
+import pyperclip
 import pyautogui
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
@@ -108,6 +109,7 @@ def abrir_archivo_con_pyautogui(ruta_archivo):
     ventana_irys = maximizar_y_traer_irys()
     if not ventana_irys:
         return
+    pyperclip.copy(ruta_archivo)
 
     time.sleep(2)
     # Clics para abrir archivo
@@ -115,7 +117,7 @@ def abrir_archivo_con_pyautogui(ruta_archivo):
     pyautogui.click(83, 80, duration=0.5)
     pyautogui.click(331, 106, duration=0.5)
     time.sleep(1)
-    pyautogui.write(ruta_archivo)
+    pyautogui.hotkey("ctrl", "v")
     pyautogui.press("enter")
     time.sleep(1)
     pyautogui.click(652, 384, duration=0.5)
@@ -139,6 +141,8 @@ class NuevoArchivoHandler(FileSystemEventHandler):
                         if os.path.isfile(os.path.join(carpeta_nueva, f))]
             if archivos:
                 primer_archivo = os.path.join(carpeta_nueva, archivos[0])
+
+                logging.info(f"Primer archivo detectado ignorando caracteres especiales : {primer_archivo}")
                 break
             time.sleep(0.5)
 
