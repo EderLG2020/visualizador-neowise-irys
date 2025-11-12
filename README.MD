@@ -77,3 +77,18 @@ y ejecutar lo siguiente:
 ```bash
 pyinstaller --onefile --noconsole visorirys.py
 ```
+
+
+## CONFIGURACION
+
+Ruta de la carpeta del evento
+
+```bash
+    D:\mundomedicodental\code\carpetalectura\
+```
+
+Ruta de la carpeta irys donde se cargo
+
+```bash
+D:\irys"
+```
