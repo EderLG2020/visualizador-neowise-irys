@@ -65,7 +65,7 @@ Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: de
 
 [Run]
 Filename: "schtasks.exe"; \
-    Parameters: "/Create /TN ""VisorIRYS Monitor"" /TR ""{app}\{#MyAppExeName}"" /SC ONLOGON /RL HIGHEST /RU ""%USERNAME%"" /F"; \
+    Parameters: "/Create /TN ""VisorIRYS Monitor"" /TR ""\""{app}\{#MyAppExeName}\"""" /SC ONLOGON /RL HIGHEST /F"; \
     Flags: runhidden waituntilterminated; \
     StatusMsg: "Creando tarea programada..."
 
