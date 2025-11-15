@@ -1,0 +1,9 @@
+{
+  "carpeta_export": "D:/mundomedicodental/code/carpetalectura",
+  "folderirys": "D:/irys",
+  "espera_usb_sec": 6,
+  "reintentos": 2,
+  "reintento_delay": 3,
+  "log_file": "watch_nnt.log",
+  "ventanas_minimizar": ["Neowise"]
+}
