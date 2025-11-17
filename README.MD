@@ -138,6 +138,9 @@ D:\irys
 ---
 
 ## Requisitos (requirements.txt)
+
+instalar **opencv-python** 
+
 ```
 pyperclip
 pyautogui
@@ -145,4 +148,4 @@ watchdog
 pygetwindow
 ```
 
-> Opcional: agregar `Pillow` si quieres asegurar compatibilidad con pyautogui.
+> Opcional: agregar `Pillow` si quieres asegurar compatibilidad con pyautogui (esta ultima se instala automaticamente). 

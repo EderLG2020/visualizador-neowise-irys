@@ -106,3 +106,7 @@ D:\irys"
 Descargar archivo 
 linux: python get-pip.py
 windows: py get-pip.py
+
+
+
+> NOTA: la tarea que se exporta del programador de tareas no se puede usar para un instalador como inno setup compiler porque en el archivo exportado solo sirve para la maquina que se creo la tarea 
