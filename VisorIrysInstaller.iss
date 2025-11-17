@@ -51,7 +51,10 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Files]
 Source: "D:\mundomedicodental\code\dist\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\mundomedicodental\code\config.json"; DestDir: "{app}"; Flags: ignoreversion
-; NOTE: Don't use "Flags: ignoreversion" on any shared system files
+Source: "D:\mundomedicodental\code\captureFile.png"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\mundomedicodental\code\captureImport.png"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\mundomedicodental\code\captureImport3d.png"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\mundomedicodental\code\capturevolumetricData.png"; DestDir: "{app}"; Flags: ignoreversion
 
 [Registry]
 Root: HKA; Subkey: "Software\Classes\{#MyAppAssocExt}\OpenWithProgids"; ValueType: string; ValueName: "{#MyAppAssocKey}"; ValueData: ""; Flags: uninsdeletevalue

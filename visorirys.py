@@ -16,6 +16,7 @@ import json
 # ============================================================
 
 CONFIG_DIR = r"C:\Program Files\visorirys"
+# CONFIG_DIR = r"D:\mundomedicodental\code"
 CONFIG_FILE = os.path.join(CONFIG_DIR, "config.json")
 
 
@@ -139,6 +140,27 @@ def maximizar_y_traer_irys():
     return ventana_irys
 
 
+def esperar_y_clickear(imagen, timeout=15, confidence=0.85):
+    """
+    Espera a que aparezca la imagen en pantalla y hace clic en el centro.
+    Si no aparece en 'timeout' segundos, devuelve False.
+    """
+    logging.info(f"Buscando: {imagen}")
+
+    start = time.time()
+    while time.time() - start < timeout:
+        pos = pyautogui.locateCenterOnScreen(imagen, confidence=confidence)
+        if pos:
+            logging.info(f"✔ Encontrado {imagen} en {pos}, clic…")
+            pyautogui.click(pos.x, pos.y, duration=0.4)
+            time.sleep(0.8)
+            return True
+        time.sleep(0.5)
+
+    logging.error(f"No se encontró {imagen} después de {timeout} s.")
+    return False
+
+
 def abrir_archivo_con_pyautogui(ruta_archivo):
     """Abre un archivo dentro de iRYS usando automatización GUI."""
     logging.info(f"Abriendo archivo: {ruta_archivo}")
@@ -149,24 +171,35 @@ def abrir_archivo_con_pyautogui(ruta_archivo):
         return
 
     pyperclip.copy(ruta_archivo)
-    time.sleep(2)
+    time.sleep(5)
 
-    pyautogui.click(15, 28, duration=0.5)
-    pyautogui.click(83, 80, duration=0.5)
-    pyautogui.click(331, 106, duration=0.5)
-    time.sleep(1)
+    # ===== SECUENCIA OBLIGATORIA =====
+    if not esperar_y_clickear("captureFile.png"):
+        return
+
+    if not esperar_y_clickear("captureImport.png"):
+        return
+
+    if not esperar_y_clickear("captureImport3d.png"):
+        return
+
+    # 3) Intentar pegar con ctrl+v
+    time.sleep(2)
     pyautogui.hotkey("ctrl", "v")
     pyautogui.press("enter")
+    
     time.sleep(1)
-    pyautogui.click(652, 384, duration=0.5)
 
+    if not esperar_y_clickear("capturevolumetricData.png"):
+        return
 
 # ============================================================
 #  MONITOREO DE CARPETAS
 # ============================================================
 
 class NuevoArchivoHandler(FileSystemEventHandler):
-    def on_created(self, event):
+ def on_created(self, event):
+        # Solo procesar si es un directorio dentro de carpeta_export
         if event.is_directory and os.path.dirname(event.src_path) == carpeta_export:
             carpeta_nueva = event.src_path
             logging.info(f"Nueva carpeta detectada: {os.path.basename(carpeta_nueva)}")
@@ -175,6 +208,7 @@ class NuevoArchivoHandler(FileSystemEventHandler):
             timeout = 10
             t0 = time.time()
 
+            # Esperar hasta que aparezca al menos un archivo
             while time.time() - t0 < timeout:
                 archivos = [
                     f for f in os.listdir(carpeta_nueva)
@@ -182,6 +216,8 @@ class NuevoArchivoHandler(FileSystemEventHandler):
                 ]
                 if archivos:
                     primer_archivo = os.path.join(carpeta_nueva, archivos[0])
+                    # Normalizar ruta para Windows
+                    primer_archivo = os.path.normpath(primer_archivo)
                     logging.info(f"Primer archivo detectado: {primer_archivo}")
                     break
                 time.sleep(0.5)
@@ -203,7 +239,6 @@ class NuevoArchivoHandler(FileSystemEventHandler):
                     time.sleep(REINTENTO_DELAY)
 
             logging.error("No se pudo lanzar NNT tras todos los intentos.")
-
 
 # ============================================================
 #  MAIN

@@ -1,2 +1,4 @@
-watchdog
+pyperclip
 pyautogui
+watchdog
+pygetwindow
