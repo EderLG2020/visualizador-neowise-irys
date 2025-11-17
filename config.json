@@ -1,6 +1,7 @@
 {
-  "carpeta_export": "D:/mundomedicodental/code/carpetalectura",
-  "folderirys": "D:/irys",
+  "carpeta_export": "D:\\clip\\carpetalectura",
+  "folderirys": "D:\\irys",
+  "usuario":"Usuario",
   "espera_usb_sec": 6,
   "reintentos": 2,
   "reintento_delay": 3,

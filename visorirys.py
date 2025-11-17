@@ -17,8 +17,8 @@ import json
 
 CONFIG_DIR = r"C:\Program Files\visorirys"
 # CONFIG_DIR = r"D:\mundomedicodental\code"
-CONFIG_FILE = os.path.join(CONFIG_DIR, "config.json")
-
+# CONFIG_FILE = os.path.join(CONFIG_DIR, "config.json")
+CONFIG_FILE = r"C:\Program Files\visorirys\config.json"
 
 # ============================================================
 #  CARGAR CONFIGURACIÓN
